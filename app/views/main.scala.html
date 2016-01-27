@@ -1,0 +1,47 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+
+
+        <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="@routes.Assets.versioned("javascripts/es6-shim.min.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/system-polyfills.js")"></script>
+
+    <script src="@routes.Assets.versioned("javascripts/angular2-polyfills.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/system.src.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/Rx.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/angular2.dev.js")"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        },
+        map: {
+          'app': '/assets/javascripts/'
+        }
+      });
+      System.import('app/boot')
+      <!--System.import('@routes.Assets.versioned("javascripts/boot.js")')-->
+            .then(null, console.error.bind(console));
+    </script>
+
+
+    </head>
+    <body>
+    <my-app>Loading...</my-app>
+        <!--@content-->
+    </body>
+</html>
